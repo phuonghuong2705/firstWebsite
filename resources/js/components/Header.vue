@@ -4,10 +4,8 @@
             <a-flex gap="20" align="center">
                 logo
                 <a-input-search
-                    v-model:value="value"
                     placeholder="Tìm kiếm"
                     style="width: 200px"
-                    @search="onSearch"
                 />
             </a-flex>
             <a-flex gap="20" align="center">
