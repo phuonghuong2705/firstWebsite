@@ -2,14 +2,14 @@ import Layout from "../layouts/layout.vue";
 import Home from "../pages/Home/Home.vue";
 import Produce from "../pages/produce/index.vue";
 import Cart from "../pages/cart/index.vue";
-const admin = [
+const client = [
     {   
-        path: '/admin',
+        path: '/',
         component: Layout,
         children: [
             {
                 title: 'Home',
-                path: 'home',
+                path: '',
                 name: 'Home',
                 component: Home,
                 meta: {
@@ -38,4 +38,4 @@ const admin = [
     },
 ]
 
-export default admin;
+export default client;

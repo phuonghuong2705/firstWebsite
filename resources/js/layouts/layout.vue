@@ -3,19 +3,20 @@
         <div class="container">
             <Header />
             <div class="content">
-                <Sidebar />
+                <div class="sidebar">
+                    <Sidebar />
+                </div>
                 <div class="main-content">
                     <router-view></router-view>
                 </div>
-                
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-    import Header from '../components/Header.vue';
-    import Sidebar from '../components/Sidebar.vue';
+    import Header from '../commons/Header.vue';
+    import Sidebar from '../commons/Sidebar.vue';
 </script>
 
 <style scoped lang="scss">
@@ -25,11 +26,14 @@
         .container {
         flex: 1;
         width: calc(100% - 48px);
+        height: calc(100% - 70px);
         .content {
+            height: 100%;
             display: flex;
-            height: calc(100% - 70px);
-            width: 100%;
-            
+            .sidebar{
+                display: flex;
+                height: 100%;
+            }
             .main-content {
                 flex: 1;
                 background-color: #f5f5f5;
