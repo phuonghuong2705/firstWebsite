@@ -1,5 +1,5 @@
 <template>
-    <div style="position: relative;">
+    <div style="position: relative; border-right: 0.5px solid #E8E8E8;">
         <a-menu
             v-model:openKeys="state.openKeys"
             v-model:selectedKeys="state.selectedKeys"
@@ -44,6 +44,7 @@ import {
     UserOutlined,
     SettingOutlined,
     ShoppingCartOutlined,
+    ShopOutlined,
 } from '@ant-design/icons-vue';
 
 const router = useRouter();
@@ -56,24 +57,25 @@ const state = ref({
 });
 const items = reactive([
     {
-        key: 'admin',
+        key: 'Home',
         icon: () => h(HomeOutlined),
         label: 'Trang chủ',
         title: 'Home',
-        router: 'admin'
+        router: 'Home'
     },
     {
-        key: 'admin-user',
-        icon: () => h(UserOutlined),
-        label: 'User',
-        title: 'User',
-        router: 'admin-user'
-    },
-    {
-        key: '3',
-        icon: () => h(ShoppingCartOutlined),
+        key: 'Produce',
+        icon: () => h(ShopOutlined),
         label: 'Sản phẩm',
-        title: 'Sản phẩm',
+        title: 'Produce',
+        router: 'Produce'
+    },
+    {
+        key: 'Cart',
+        icon: () => h(ShoppingCartOutlined),
+        label: 'Giỏ hàng',
+        title: 'Cart',
+        router: 'Cart'
     },
     {
         key: 'sub1',
@@ -99,15 +101,14 @@ const items = reactive([
         ],
     },
 ]);
-const Admin = ref(['admin']);
-const AdminUser = ref(['admin-user']);
+const Produce = ref(['Produce']);
+const Cart = ref(['Cart']);
 
 onBeforeMount(() => {
     getSelectedKey();
 });
 
 onMounted(()=> {
-    console.log(route.name);
 });
 
 watch(() => state.value.openKeys,(_val, oldVal) => {
@@ -121,11 +122,14 @@ watch(() => route.name,
 );
 
 const getSelectedKey = () => {
-    if (Admin.value.includes(route.name)) {
-        state.value.selectedKeys = ['admin'];
+    if (Produce.value.includes(route.name)) {
+        state.value.selectedKeys = ['Produce'];
     }
-    else if (AdminUser.value.includes(route.name)) {
-        state.value.selectedKeys = ['admin-user'];
+    else if (Cart.value.includes(route.name)) {
+        state.value.selectedKeys = ['Cart'];
+    } 
+    else {
+        state.value.selectedKeys = ['Home'];
     }
     // else if (MemberManager.value.includes(route.name)) {
     //     selectedKeys.value = ['ManagerMember'];
@@ -178,4 +182,5 @@ const redirectToRouter = (name = '') => {
         transition: all 0.26s ease;
         box-shadow: 8px 0px 24px 0px transparent;
     }
+
 </style>
