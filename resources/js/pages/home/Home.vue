@@ -1,11 +1,11 @@
 <template>
     <div class="content">
-        <div class="banner">
-            <a-row style="height: 50%;" :gutter="[16,16]">
-                <a-col style="width: 70%;"><Slider /></a-col>
-                <a-col style="width: 30%;">
+        <div class="banner-home">
+            <a-row :gutter="[16,16]">
+                <a-col style="width: 68%;"><Slider /></a-col>
+                <a-col style="width: 32%; max-height: 400px;">
                     <a-row>
-                        <div style="margin-bottom: 16px;">
+                        <div style="width: 100%; margin-bottom: 12px;">
                             <VideoBanner videoId="kFZo7yJ2ONg" />
                         </div>
                     </a-row>
@@ -53,9 +53,9 @@
     .content {
         justify-content: center;
         margin: 1em;
-        .banner{
-            width: 1000px;
-            height: 420px;
+        .banner-home{
+            max-width: 1100px;
+            max-height: 400px;
         }
     }
 </style>
