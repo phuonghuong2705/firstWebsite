@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div ref="containerRef" class="video-container">
         <div id="youtube-player"></div>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted, nextTick } from "vue";
 
 const props= defineProps({
     videoId: {
@@ -13,22 +13,27 @@ const props= defineProps({
     required: true
     }
 })
+const containerRef = ref(null);
 const player = ref(null);
 
 const createPlayer = () => {
-    player.value = new YT.Player("youtube-player", {
-        height: 200,
-        width: 290,
-        videoId: props.videoId,
-        playerVars: { autoplay: 0, controls: 1 }
+    nextTick(() => {
+        if (containerRef.value) {
+            const width = containerRef.value.clientWidth;
+            const height = (width * 9) / 16;
+
+            player.value = new YT.Player("youtube-player", {
+                width,
+                height,
+                videoId: props.videoId,
+                playerVars: { autoplay: 0, controls: 1 }
+            });
+        }
     });
 };
 
 onMounted(() => {
-    window.addEventListener("resize", () => {
-        updateWidth();
-        updateHeight();
-    })
+    window.addEventListener("resize", updateSize);
     if (!window.YT) {
         const tag = document.createElement("script");
         tag.src = "https://www.youtube.com/iframe_api";
@@ -42,30 +47,31 @@ onMounted(() => {
     };
 });
 
-const width = ref();
-const height = ref();
+onUnmounted(() => {
+    window.removeEventListener("resize", updateSize);
+});
 
-const updateWidth = () => {
-    width.value = window.innerWidth;
-    console.log(width.value);
-    
-    return (width.value / 4) - 16;
-};
-const updateHeight = () => {
-    height.value = window.innerHeight;
-    console.log(height.value);
-    return (height.value / 4) - 16;
-};
+const updateSize = () => {
+    if (player.value && containerRef.value) {
+        const width = containerRef.value.clientWidth;
+        const height = (width * 9) / 14; // Tỷ lệ 16:9
+        player.value.setSize(width, height);
+    }};
 </script>
 
 <style scoped>
 .controls {
-margin-top: 10px;
+    margin-top: 10px;
 }
 button {
-margin-right: 10px;
-padding: 8px 15px;
-font-size: 16px;
-cursor: pointer;
+    margin-right: 10px;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.video-container {
+    width: 100%; /* Hoặc một kích thước cụ thể như 80% */
+    height: 100%; /* Giới hạn kích thước tối đa */
+    margin: auto;
 }
 </style>
