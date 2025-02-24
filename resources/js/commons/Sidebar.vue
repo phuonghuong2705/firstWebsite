@@ -68,7 +68,26 @@ const items = reactive([
         icon: () => h(ShopOutlined),
         label: 'Sản phẩm',
         title: 'Produce',
-        router: 'Produce'
+        children: [
+            {
+                key: '1',
+                label: 'Sản phẩm 1',
+                title: 'Sản phẩm 1',
+                router: 'Produce1',
+            },
+            {
+                key: '2',
+                label: 'Sản phẩm 2',
+                title: 'Sản phẩm 2',
+                router: 'Produce2',
+            },
+            {
+                key: '3',
+                label: 'Sản phẩm 3',
+                title: 'Sản phẩm 3',
+                router: 'Produce3',
+            },
+        ],
     },
     {
         key: 'Cart',
@@ -83,21 +102,21 @@ const items = reactive([
         label: 'Cài đặt',
         title: 'Cài đặt',
         children: [
-        {
-            key: '5',
-            label: 'Thông tin chung',
-            title: 'Thông tin chung',
-        },
-        {
-            key: '6',
-            label: 'Cài đặt Người dùng',
-            title: 'Cài đặt Người dùng',
-        },
-        {
-            key: '7',
-            label: 'Đăng xuất',
-            title: 'Đăng xuất',
-        },
+            {
+                key: '5',
+                label: 'Thông tin chung',
+                title: 'Thông tin chung',
+            },
+            {
+                key: '6',
+                label: 'Cài đặt Người dùng',
+                title: 'Cài đặt Người dùng',
+            },
+            {
+                key: '7',
+                label: 'Đăng xuất',
+                title: 'Đăng xuất',
+            },
         ],
     },
 ]);
@@ -159,8 +178,6 @@ const toggleCollapsed = () => {
     state.value.openKeys = state.value.collapsed ? [] : state.value.preOpenKeys;
 };
 const handleClick = menuInfo => {
-    console.log(state.value);
-    
     if(state.value.openKeys.length && !menuInfo.keyPath.includes(state.value.openKeys[0])){
         state.value.openKeys = [];
     }

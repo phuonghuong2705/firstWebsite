@@ -1,6 +1,7 @@
 import Layout from "../layouts/layout.vue";
 import Home from "../pages/Home/Home.vue";
-import Produce from "../pages/produce/index.vue";
+import ProduceTemplate from "../pages/produce/index.vue";
+import Produce from "../pages/produce/produce.vue";
 import Cart from "../pages/cart/index.vue";
 const client = [
     {   
@@ -17,13 +18,42 @@ const client = [
                 },
             },
             {   
-                title: 'Produce',
+                title: 'ProduceTemplate',
                 path: 'produce',
-                component: Produce,
-                name: 'Produce',
+                component: ProduceTemplate,
+                name: 'ProduceTemplate',
                 meta: {
                     title: 'Sản phẩm',
                 },
+                children: [
+                    {
+                        title: 'Produce1',
+                        path: 'produce1',
+                        name: 'Produce1',
+                        component: Produce,
+                        meta: {
+                            title: 'Produce1',
+                        },
+                    },
+                    {
+                        title: 'Produce2',
+                        path: 'produce2',
+                        name: 'Produce2',
+                        component: Produce,
+                        meta: {
+                            title: 'Produce2',
+                        },
+                    },
+                    {
+                        title: 'Produce3',
+                        path: 'produce3',
+                        name: 'Produce3',
+                        component: Produce,
+                        meta: {
+                            title: 'Produce3',
+                        },
+                    },
+                ]
             },
             {   
                 title: 'Cart',
