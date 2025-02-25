@@ -22,9 +22,9 @@
 
 <script setup>
     import { onMounted, ref } from 'vue';
-    import Slider from '../../components/Slider.vue';
-    import VideoBanner from '../../components/VideoBanner.vue';
-    import HomeBanner from '../../components/HomeBanner.vue';
+    import Slider from '../../../components/Slider.vue';
+    import VideoBanner from '../../../components/VideoBanner.vue';
+    import HomeBanner from '../../../components/HomeBanner.vue';
 
     const width = ref();
     const height = ref();
