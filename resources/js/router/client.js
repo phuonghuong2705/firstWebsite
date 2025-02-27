@@ -1,8 +1,8 @@
 import Layout from "../layouts/layout.vue";
-import Home from "../pages/Home/Home.vue";
-import ProduceTemplate from "../pages/produce/index.vue";
-import Produce from "../pages/produce/produce.vue";
-import Cart from "../pages/cart/index.vue";
+import Home from "../pages/client/Home/Home.vue";
+import ProduceTemplate from "../pages/client/produce/index.vue";
+import Produce from "../pages/client/produce/produce.vue";
+import Cart from "../pages/client/cart/index.vue";
 const client = [
     {   
         path: '/',

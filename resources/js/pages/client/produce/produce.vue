@@ -1,6 +1,6 @@
 <template>
     <div>
-        1231231
+        {{ route.path }}
     </div>
 </template>
 
