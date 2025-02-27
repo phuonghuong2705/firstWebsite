@@ -9,14 +9,35 @@
                 />
             </a-flex>
             <a-flex gap="20" align="center">
-                <a-button>Đăng ký</a-button>
-                <a-button>Đăng nhập</a-button>
+                <a-button @click="redirectToSignIn()">
+                    Đăng ký
+                </a-button>
+                <a-button @click="redirectToLogin()">
+                    Đăng nhập
+                </a-button>
             </a-flex>
         </a-flex>
     </div>
 </template>
 
 <script setup>
+import { useRoute, useRouter } from 'vue-router';
+
+const route = useRoute();
+const router = useRouter();
+
+//action
+const redirectToLogin = () => {
+    router.push({
+        name: 'Login',
+    });
+}
+
+const redirectToSignIn = () => {
+    router.push({
+        name: 'SignIn',
+    });
+}
 </script>
 
 <style scoped lang="scss">
