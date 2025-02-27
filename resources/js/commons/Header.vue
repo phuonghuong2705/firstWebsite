@@ -9,7 +9,7 @@
                 />
             </a-flex>
             <a-flex gap="20" align="center">
-                <a-button @click="redirectToSignIn()">
+                <a-button @click="redirectToRegister()">
                     Đăng ký
                 </a-button>
                 <a-button @click="redirectToLogin()">
@@ -33,9 +33,9 @@ const redirectToLogin = () => {
     });
 }
 
-const redirectToSignIn = () => {
+const redirectToRegister = () => {
     router.push({
-        name: 'SignIn',
+        name: 'Register',
     });
 }
 </script>

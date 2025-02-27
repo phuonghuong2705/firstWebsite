@@ -1,10 +1,10 @@
 import Layout from "../layouts/layout.vue";
-import Home from "../pages/client/Home/Home.vue";
+import Home from "../pages/client/home/Home.vue";
 import ProduceTemplate from "../pages/client/produce/index.vue";
 import Produce from "../pages/client/produce/produce.vue";
 import Cart from "../pages/client/cart/index.vue";
 import Login from "../pages/login/login.vue";
-import SignIn from "../pages/login/signIn.vue";
+import Register from "../pages/login/register.vue";
 const client = [
     {   
         path: '/',
@@ -74,9 +74,9 @@ const client = [
         component: Login,
     },
     {
-        path: '/sign-in',
-        name: 'SignIn',
-        component: SignIn,
+        path: '/register',
+        name: 'Register',
+        component: Register,
     }
 ]
 
