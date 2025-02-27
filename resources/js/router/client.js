@@ -3,6 +3,8 @@ import Home from "../pages/client/Home/Home.vue";
 import ProduceTemplate from "../pages/client/produce/index.vue";
 import Produce from "../pages/client/produce/produce.vue";
 import Cart from "../pages/client/cart/index.vue";
+import Login from "../pages/login/login.vue";
+import SignIn from "../pages/login/signIn.vue";
 const client = [
     {   
         path: '/',
@@ -66,6 +68,16 @@ const client = [
             },
         ]
     },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+    },
+    {
+        path: '/sign-in',
+        name: 'SignIn',
+        component: SignIn,
+    }
 ]
 
 export default client;
