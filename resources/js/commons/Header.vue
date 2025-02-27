@@ -44,6 +44,9 @@ const redirectToRegister = () => {
     .header{
         width: 100vw;
         height: 70px;
-        background-color: red;
+        background-image: url(/img/backGround.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
     }
 </style>
