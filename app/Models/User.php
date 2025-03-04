@@ -46,6 +46,19 @@ class User extends Authenticatable
     ];
 
     public function status(){
-        return $this->belongsTo(UserStatus::class, 'id', 'id');
+        return $this->belongsTo(UserStatus::class, 'status_id', 'id');
+    }
+
+    public function getListUsers($request){
+
+        dd($request->query('limit'));
+        return $users = User::select(
+            'users.*',
+            'users_status.status as status',
+            'user_permission.permission as permission'
+        )
+        ->join('users_status', 'users.status_id', '=', 'users_status.id')
+        ->join('user_permission', 'users.permission_id', '=', 'user_permission.id')
+        ->paginate(10);
     }
 }
