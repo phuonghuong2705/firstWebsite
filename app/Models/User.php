@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserStatus;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -49,16 +50,30 @@ class User extends Authenticatable
         return $this->belongsTo(UserStatus::class, 'status_id', 'id');
     }
 
-    public function getListUsers($request){
+    // Scope tìm kiếm theo tên
+    public function scopeSearchByName(Builder $query, $search)
+    {
+        if (!empty($search)) {
+            return $query->where('users.name', 'like', "%$search%");
+        }
+        return $query;
+    }
 
-        dd($request->query('limit'));
-        return $users = User::select(
-            'users.*',
-            'users_status.status as status',
-            'user_permission.permission as permission'
-        )
-        ->join('users_status', 'users.status_id', '=', 'users_status.id')
-        ->join('user_permission', 'users.permission_id', '=', 'user_permission.id')
-        ->paginate(10);
+    // Scope lọc theo permission
+    public function scopeFilterByPermission(Builder $query, $permission)
+    {
+        if (!empty($permission)) {
+            return $query->where('user_permission.permission', '=', $permission);
+        }
+        return $query;
+    }
+
+    // Scope lọc theo status
+    public function scopeFilterByStatus(Builder $query, $status)
+    {
+        if (!empty($status)) {
+            return $query->where('users_status.status', '=', $status);
+        }
+        return $query;
     }
 }
