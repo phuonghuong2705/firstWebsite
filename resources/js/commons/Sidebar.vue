@@ -246,6 +246,8 @@ const Cart = ref(['Cart']);
 onBeforeMount(() => {
     getSelectedKey();
     // getSidebarKey();
+    console.log(route);
+    console.log(router);
 });
 
 onMounted(()=> {
