@@ -46,7 +46,7 @@
                 </a-form-item>
             
                 <a-form-item>
-                    <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button">
+                    <a-button :disabled="disabled" @click="login()" type="primary" html-type="submit" class="login-form-button">
                         Log in
                     </a-button>
                     <div class="form-text">Or Sign Up With</div>
@@ -67,6 +67,7 @@
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined, GoogleOutlined, FacebookOutlined } from '@ant-design/icons-vue';
 import { useRoute, useRouter } from 'vue-router';
+import api from '../../api/auth'
 
 const route = useRoute();
 const router = useRouter();
@@ -91,6 +92,27 @@ const disabled = computed(() => {
 const redirectToRegister = () => {
     router.push({
         name: 'Register',
+    })
+}
+
+const login = () => {
+    let params = {
+        email: formData.username,
+        password: formData.password, 
+    }
+    api.login(params).then(res => {
+        console.log(res);
+        getUser();
+    }).catch(err => {
+        console.log(err);
+    })
+}
+
+const getUser = () => {
+    api.getUser().then(res => {
+        console.log(res);
+    }).catch(err => {
+        console.log(err);
     })
 }
 

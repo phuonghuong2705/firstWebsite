@@ -14,4 +14,20 @@ export default defineConfig({
             },
         }),
     ],
+    // define: {
+    //     'process.env': {
+    //         shopApi: process.env.SHOP_API_DOMAIN,
+    //     }
+    // },
+    server: {
+        host: 'localhost',
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8386',
+                changeOrigin: true,
+                secure: false,
+                withCredentials: true, // Quan trọng: gửi cookie
+            },
+        },
+    },
 });
