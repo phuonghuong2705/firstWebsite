@@ -16,25 +16,31 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return response()->json(['message' => 'Đăng nhập thành công']);
+            return response()->json([
+            'data' => ['message' => 'Đăng nhập thành công', 
+                'user' => Auth::user(),
+            ],
+            'status' => true,
+        ]);
         }
-
         return response()->json(['message' => 'Thông tin đăng nhập không đúng'], 401);
     }
 
-    // public function getUser(Request $request)
-    // {
-    //     if (Auth::check()) {
-    //         $user = Auth::user();
-            
-    //         return response()->json([
-    //             'name' => $user->name,
-    //             'email' => $user->email,
-    //         ]);
-    //     }
+    public function getUser(Request $request)
+    {
+        dd(Auth::check());
+        if (Auth::check()) {
+            $user = Auth::user();
+            return response()->json([
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'permission_id' => $user->permission_id,
+            ]);
+        }
 
-    //     return response()->json(['message' => 'Unauthorized'], 401);
-    // }
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
 
     public function logout(Request $request)
     {
