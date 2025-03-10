@@ -22,13 +22,10 @@ export const authStore = defineStore('auth', () => {
     }
 
     async function getUser (){
-        console.log(123);
-        
         return new Promise(async (resolve, reject) => {
             try {
                 let res = await api.getUser();
-                console.log(res);
-                
+                user.value = res.data;
                 resolve(res.data);
             } catch (error) {
                 reject(error);
@@ -36,5 +33,5 @@ export const authStore = defineStore('auth', () => {
         });
     }
   
-    return { login, getUser, doubleCount, increment }
+    return { user, login, getUser, doubleCount, increment }
   })

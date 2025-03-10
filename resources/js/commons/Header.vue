@@ -8,7 +8,7 @@
                     style="width: 200px"
                 />
             </a-flex>
-            <a-flex gap="20" align="center">
+            <a-flex v-if="!store.user" gap="20" align="center">
                 <a-button @click="redirectToRegister()">
                     Đăng ký
                 </a-button>
@@ -16,12 +16,19 @@
                     Đăng nhập
                 </a-button>
             </a-flex>
+            <a-flex v-else align="center">
+                <a-avatar></a-avatar>
+                {{ store.user.name }}
+            </a-flex>
         </a-flex>
     </div>
 </template>
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
+import { authStore } from '../store/authStore';
+
+const store = authStore();
 
 const route = useRoute();
 const router = useRouter();

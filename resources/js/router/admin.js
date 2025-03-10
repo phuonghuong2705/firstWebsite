@@ -1,17 +1,18 @@
 import Layout from "../layouts/layout.vue";
-import Home from "../pages/admin/home/Home.vue";
+import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 // import Produce from "../pages/produce/index.vue";
 // import Cart from "../pages/cart/index.vue";
 const admin = [
     {   
-        path: '/admin',
+        path: '/',
         component: Layout,
         children: [
             {
-                title: 'Home',
-                path: 'home',
-                name: 'Home',
-                component: Home,
+                path: 'dashboard',
+                title: 'Dashboard',
+                path: 'dashboard',
+                name: 'Dashboard',
+                component: Dashboard,
                 meta: {
                     title: 'Trang chủ',
                 },

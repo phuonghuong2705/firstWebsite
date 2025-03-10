@@ -15,8 +15,37 @@
 </template>
 
 <script setup>
-    import Header from '../commons/Header.vue';
-    import Sidebar from '../commons/Sidebar.vue';
+import Header from '../commons/Header.vue';
+import Sidebar from '../commons/Sidebar.vue';
+import { useRoute, useRouter } from 'vue-router';
+import { onMounted, ref } from 'vue';
+import { authStore } from '../store/authStore';
+
+const store = authStore();
+const route = useRoute();
+const router = useRouter();
+const listComponent = ref(['dashboard'])
+
+onMounted(() => {
+    if (listComponent.value.some(keyword => route.path.includes(keyword))) {
+        getUser();
+    }
+});
+
+const getUser = () => {
+    store.getUser().then(res => {
+        console.log(res, 123);
+    }).catch(err => {
+        console.log(err);
+        redirectToLogin();
+    })
+};
+
+const redirectToLogin = () => {
+    router.push({
+        name: 'Login',
+    });
+}
 </script>
 
 <style scoped lang="scss">

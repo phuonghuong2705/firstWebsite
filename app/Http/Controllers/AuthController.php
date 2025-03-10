@@ -17,8 +17,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return response()->json([
-            'data' => ['message' => 'Đăng nhập thành công', 
-                'user' => Auth::user(),
+            'data' => ['message' => 'Đăng nhập thành công',
             ],
             'status' => true,
         ]);
@@ -28,14 +27,16 @@ class AuthController extends Controller
 
     public function getUser(Request $request)
     {
-        dd(Auth::check());
         if (Auth::check()) {
             $user = Auth::user();
             return response()->json([
+                'data' => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'permission_id' => $user->permission_id,
+                'permission_id' => $user->permission_id, 
+                ],
+                'status' => true,
             ]);
         }
 
