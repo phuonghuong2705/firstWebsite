@@ -67,7 +67,6 @@
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined, GoogleOutlined, FacebookOutlined } from '@ant-design/icons-vue';
 import { useRoute, useRouter } from 'vue-router';
-import api from '../../api/auth'
 import { authStore } from '../../store/authStore';
 
 const store = authStore();
@@ -104,18 +103,16 @@ const login = () => {
     }
     store.login(params).then(res => {
         console.log(res);
-        getUser();
+        redirectToDashboard();
     }).catch(err => {
         console.log(err);
     });
 }
 
-const getUser = () => {
-    store.getUser().then(res => {
-        console.log(res);
-    }).catch(err => {
-        console.log(err);
-    })
+const redirectToDashboard = () => {
+    router.push({
+        name: 'Dashboard',
+    });
 }
 
 </script>
